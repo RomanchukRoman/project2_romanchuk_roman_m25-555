@@ -1,0 +1,21 @@
+[project]
+name = "project2-romanchuk-roman-m25-555"
+version = "0.1.0"
+description = ""
+authors = [
+    { name = "RomanchukRoman", email = "r.romanchuk@ya.ru" }
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+project = "src.primitive_db.main:main"
+
+[tool.poetry]
+# только то, чего нет в стандарте — путь к пакетам
+packages = [{ include = "src" }]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
