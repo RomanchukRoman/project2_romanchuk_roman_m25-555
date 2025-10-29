@@ -1,1 +1,6 @@
-{"table_name": "table_2"}
+{
+    "table_1": 
+    {"column_1": "value_1", "column_2": "value_2"}, 
+    "table_2": 
+    {"column_1": "value_1", "column_2": "value_2"}
+}

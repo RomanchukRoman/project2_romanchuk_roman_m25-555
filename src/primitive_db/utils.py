@@ -22,11 +22,12 @@ def save_metadata(filepath, data):
     with open(filepath, 'w') as file:
         json.dump(data, file)
 
-''' Проверка
+''' 
+#Проверка
 filepath = 'src/primitive_db/db_meta.json'
-data = {"table_name": "table_2"}
+data = {"table_2": {"column_3": "value_3"}}
 
 load_metadata(filepath)
-save_metadata(filepath, data)
+save_metadata(filepath, data) # сейчас функция переписывает все данные! нужно научить переписывать по ключам
 load_metadata(filepath)
 '''
