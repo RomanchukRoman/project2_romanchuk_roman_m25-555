@@ -19,6 +19,14 @@ def save_metadata(filepath, data):
     '''
     Сохраняет переданные данные в JSON-файл.
     '''
-    pass
+    with open(filepath, 'w') as file:
+        json.dump(data, file)
 
-load_metadata('src/primitive_db/db_meta.json')
+''' Проверка
+filepath = 'src/primitive_db/db_meta.json'
+data = {"table_name": "table_2"}
+
+load_metadata(filepath)
+save_metadata(filepath, data)
+load_metadata(filepath)
+'''
