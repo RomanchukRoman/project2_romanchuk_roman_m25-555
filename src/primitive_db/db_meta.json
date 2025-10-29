@@ -1,6 +1,6 @@
 {
     "table_1": 
-    {"column_1": "value_1", "column_2": "value_2"}, 
+    {"column_1": "int", "column_2": "str"}, 
     "table_2": 
-    {"column_1": "value_1", "column_2": "value_2"}
+    {"column_1": "int", "column_2": "bool"}
 }
