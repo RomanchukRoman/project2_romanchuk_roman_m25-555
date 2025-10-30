@@ -26,11 +26,27 @@ def drop_table(metadata, table_name):
     Проверяет существование таблицы. Если таблицы нет, выводит ошибку.
     Удаляет информацию о таблице из metadata и возвращает обновленный словарь.
     '''
-    pass
-
+    flag_del = False
+    # Проверки на наличие такой таблицы
+    for table in metadata:
+            if table == table_name:
+                metadata.pop(table_name)
+                flag_del = True
+                break
+    if not flag_del:
+        raise ValueError("Такой таблицы не существует")
+    print(metadata)
+            
+''' 
 # Проверка create_table
 filepath = 'src/primitive_db/db_meta.json'
 metadata = load_metadata(filepath)
 columns = {"column_1": bool, "column_2": int}
-
 create_table(metadata, 'table_3', columns)
+'''
+''' 
+# Проверка drop_table
+filepath = 'src/primitive_db/db_meta.json'
+metadata = load_metadata(filepath)
+drop_table(metadata, 'table_1')
+'''
