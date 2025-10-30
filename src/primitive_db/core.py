@@ -9,13 +9,17 @@ def create_table(metadata, table_name, columns):
     Проверять корректность типов данных (только int, str, bool).
     В случае успеха, обновлять словарь metadata и возвращать его.
     '''
+    # Проверки на наличие такой таблицы и типы данных
     for table in metadata:
         if table == table_name:
-            print('Такая таблица уже существует')
-        else:
-            print(table)
-            columns['ID'] = 'int'
-            print(columns)
+            raise ValueError("Такая таблица уже существует")
+    for column in columns:
+        if isinstance(columns[column], (int, str, bool)):
+            raise TypeError("Тип данных может быть только int, str, bool")
+
+    metadata[table_name] = {"ID": int}
+    metadata[table_name].update(columns)
+    print(metadata) # тут заменить на return и возможно перезаписать json
 
 def drop_table(metadata, table_name):
     '''
@@ -25,12 +29,8 @@ def drop_table(metadata, table_name):
     pass
 
 # Проверка create_table
-metadata = {
-    "table_1": 
-    {"column_1": "int", "column_2": "str"}, 
-    "table_2": 
-    {"column_1": "int", "column_2": "bool"}
-}
-columns = {"column_1": "bool", "column_2": "int"}
+filepath = 'src/primitive_db/db_meta.json'
+metadata = load_metadata(filepath)
+columns = {"column_1": bool, "column_2": int}
 
 create_table(metadata, 'table_3', columns)

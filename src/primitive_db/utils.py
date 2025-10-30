@@ -9,9 +9,9 @@ def load_metadata(filepath):
     try:
         with open(filepath) as file:
             data = json.load(file)
-            print(data) # тут изменить на return
+            return data
     except (FileNotFoundError):
-        print({}) # тут изменить на return
+        return {}
 
 
 
