@@ -1,6 +1,28 @@
 {
-    "table_1": 
-    {"column_1": "int", "column_2": "str"}, 
-    "table_2": 
-    {"column_1": "int", "column_2": "bool"}
+    "table_1": {
+        "column_1": "int",
+        "column_2": "str"
+    },
+    "table_2": {
+        "column_1": "int",
+        "column_2": "bool"
+    },
+    "users": {
+        "ID": "int",
+        "name": "str",
+        "age": "int",
+        "is_active": "bool"
+    },
+    "usders": {
+        "ID": "int",
+        "name": "str",
+        "age": "int",
+        "is_active": "bool"
+    },
+    "usdeffrs": {
+        "id": "int",
+        "name": "str",
+        "age": "int",
+        "is_active": "bool"
+    }
 }

@@ -1,7 +1,8 @@
 # src/primitive_db/engine.py
-
-# надо подключить в зависимости командой poetry add prompt 
-#import prompt 
+import prompt
+import shlex
+from .utils import load_metadata, save_metadata
+from .core import create_table, drop_table
 
 def run():
     '''
@@ -12,10 +13,32 @@ def run():
     Используйте if/elif/else или match/case для вызова соответствующей функции из core.py.
     После каждой успешной операции (create_table, drop_table) сохраняйте измененные метаданные с помощью save_metadata.
     '''
+    filepath = 'src/primitive_db/db_meta.json'
     while True:
-        print('Первая попытка запустить проект!\n *** \n')
-        print(' <command> exit - выйти из программы\n <command> help - справочная информация\n')
-        command = prompt.string('Введите команду:')
+        try:
+            metadata = load_metadata(filepath)
+            commands = prompt.string('Введите команду:')
+            args = shlex.split(commands)
+            # Первое слово команда
+            command = args[0]
+            table_name = args[1] if len(args) > 1 else None
+            columns = args[2:] if len(args) > 2 else []
+
+            match command:
+                case 'create_table':
+                        data = create_table(metadata, table_name, columns)
+                        save_metadata(filepath, data)
+                case 'list_tables':
+                    pass
+                case 'drop_table':
+                    drop_table(metadata, table_name)
+                case 'exit':
+                    print('\nВыход из программы')
+                    break
+                case 'help':
+                    print_help()
+        except Exception as e:
+            print(f'Ошибка: {e}. Попробуйте снова.')
 
 def print_help():
     """Prints the help message for the current mode."""

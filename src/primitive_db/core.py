@@ -1,5 +1,4 @@
 # src/primitive_db/core.py
-from utils import load_metadata
 
 def create_table(metadata, table_name, columns):
     '''
@@ -10,43 +9,40 @@ def create_table(metadata, table_name, columns):
     В случае успеха, обновлять словарь metadata и возвращать его.
     '''
     # Проверки на наличие такой таблицы и типы данных
-    for table in metadata:
-        if table == table_name:
-            raise ValueError("Такая таблица уже существует")
-    for column in columns:
-        if isinstance(columns[column], (int, str, bool)):
-            raise TypeError("Тип данных может быть только int, str, bool")
+    if table_name in metadata:
+        raise ValueError(f'Таблица "{table_name}" уже существует')
 
-    metadata[table_name] = {"ID": int}
-    metadata[table_name].update(columns)
-    print(metadata) # тут заменить на return и возможно перезаписать json
+    allowed_types = {"int", "str", "bool"}
+    parsed_columns = {}
+    id_present = False
+
+    for col in columns:
+        if ":" not in col:
+            raise ValueError(f'Некорректное значение: {col}. Попробуйте снова.')
+        col_name, col_type_str = col.split(":", 1)
+        col_name = col_name.strip()
+        col_type_str = col_type_str.strip()
+        if col_type_str not in allowed_types:
+            raise TypeError(f'Тип данных может быть только: int, str, bool (ошибка в {col})')
+        parsed_columns[col_name] = col_type_str
+        if col_name.lower() == "id":
+            id_present = True
+
+    if not id_present:
+        parsed_columns = {"id": "int", **parsed_columns}
+
+    metadata[table_name] = parsed_columns
+    print(f'Таблица "{table_name}" успешно создана со столбцами: {", ".join(metadata[table_name].keys())}')
+    return metadata
 
 def drop_table(metadata, table_name):
     '''
     Проверяет существование таблицы. Если таблицы нет, выводит ошибку.
     Удаляет информацию о таблице из metadata и возвращает обновленный словарь.
     '''
-    flag_del = False
     # Проверки на наличие такой таблицы
-    for table in metadata:
-            if table == table_name:
-                metadata.pop(table_name)
-                flag_del = True
-                break
-    if not flag_del:
-        raise ValueError("Такой таблицы не существует")
-    print(metadata)
-            
-''' 
-# Проверка create_table
-filepath = 'src/primitive_db/db_meta.json'
-metadata = load_metadata(filepath)
-columns = {"column_1": bool, "column_2": int}
-create_table(metadata, 'table_3', columns)
-'''
-''' 
-# Проверка drop_table
-filepath = 'src/primitive_db/db_meta.json'
-metadata = load_metadata(filepath)
-drop_table(metadata, 'table_1')
-'''
+    if table_name not in metadata:
+        raise ValueError(f'Таблицы "{table_name}" не существует')
+
+    metadata.pop(table_name)
+    return metadata

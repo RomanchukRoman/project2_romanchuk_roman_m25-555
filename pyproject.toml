@@ -7,14 +7,15 @@ authors = [
 ]
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = ["prompt (>=0.4.1,<0.5.0)"]
 
 [project.scripts]
-project = "src.primitive_db.main:main"
+project = "primitive_db.main:main"
 
 [tool.poetry]
-# только то, чего нет в стандарте — путь к пакетам
-packages = [{ include = "src" }]
+packages = [
+    { include = "primitive_db", from = "src" }
+]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
@@ -28,3 +29,8 @@ exclude = ["venv", ".venv", "dist", "__pycache__"]
 [tool.ruff.lint]
 select = ["E", "F", "I"]
 ignore = [] 
+
+[dependency-groups]
+dev = [
+    "ruff (>=0.14.3,<0.15.0)"
+]
