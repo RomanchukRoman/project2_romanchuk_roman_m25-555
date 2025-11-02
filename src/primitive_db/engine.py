@@ -2,7 +2,7 @@
 import prompt
 import shlex
 from .utils import load_metadata, save_metadata
-from .core import create_table, drop_table
+from .core import create_table, drop_table, list_tables
 
 def run():
     '''
@@ -31,7 +31,7 @@ def run():
                         data = create_table(metadata, table_name, columns)
                         save_metadata(filepath, data)
                 case 'list_tables':
-                    pass
+                    list_tables(metadata)
                 case 'drop_table':
                     data = drop_table(metadata, table_name)
                     save_metadata(filepath, data)

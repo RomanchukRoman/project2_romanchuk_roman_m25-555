@@ -48,8 +48,12 @@ def drop_table(metadata, table_name):
     print(f'Таблица "{table_name}" успешно удалена.')
     return metadata
 
-def list_tables():
+def list_tables(metadata):
     '''
     Показать список всех таблиц
     '''
-    pass
+    if metadata != {}:
+        for table in metadata:
+            print(f'- {table}')
+    else:
+        print('Список таблиц пуст.')
