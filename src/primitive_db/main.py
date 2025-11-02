@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-from engine import run, help
+#from engine import run, help
 
 def main():
     print("DB project is running!")
 
 if __name__ == '__main__':
-    run()
+    main()
 
 
 # poetry run project

@@ -1,7 +1,7 @@
 # src/primitive_db/engine.py
 
 # надо подключить в зависимости командой poetry add prompt 
-import prompt 
+#import prompt 
 
 def run():
     '''
