@@ -13,13 +13,15 @@ def run():
     Используйте if/elif/else или match/case для вызова соответствующей функции из core.py.
     После каждой успешной операции (create_table, drop_table) сохраняйте измененные метаданные с помощью save_metadata.
     '''
+    print('\n***База данных***')
+    print('\nФункции:\n<command> create_table <имя_таблицы> <столбец1:тип> <столбец2:тип> .. - создать таблицу\n<command> list_tables - показать список всех таблиц\n<command> drop_table <имя_таблицы> - удалить таблицу\n<command> exit - выход из программы\n<command> help - справочная информация')
     filepath = 'src/primitive_db/db_meta.json'
     while True:
         try:
             metadata = load_metadata(filepath)
-            commands = prompt.string('Введите команду:')
+            commands = prompt.string('\nВведите команду:')
             args = shlex.split(commands)
-            # Первое слово команда
+            # Первое слово команда, далее аргументы
             command = args[0]
             table_name = args[1] if len(args) > 1 else None
             columns = args[2:] if len(args) > 2 else []
@@ -31,7 +33,8 @@ def run():
                 case 'list_tables':
                     pass
                 case 'drop_table':
-                    drop_table(metadata, table_name)
+                    data = drop_table(metadata, table_name)
+                    save_metadata(filepath, data)
                 case 'exit':
                     print('\nВыход из программы')
                     break

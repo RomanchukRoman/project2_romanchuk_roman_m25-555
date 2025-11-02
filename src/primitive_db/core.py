@@ -45,4 +45,11 @@ def drop_table(metadata, table_name):
         raise ValueError(f'Таблицы "{table_name}" не существует')
 
     metadata.pop(table_name)
+    print(f'Таблица "{table_name}" успешно удалена.')
     return metadata
+
+def list_tables():
+    '''
+    Показать список всех таблиц
+    '''
+    pass
