@@ -3,6 +3,7 @@ import prompt
 import shlex
 from .utils import load_metadata, save_metadata
 from .core import create_table, drop_table, list_tables
+from .constants import METADATA_FILE, get_table_data_path
 
 def run():
     '''
@@ -15,10 +16,10 @@ def run():
     '''
     print('\n***База данных***')
     print('\nФункции:\n<command> create_table <имя_таблицы> <столбец1:тип> <столбец2:тип> .. - создать таблицу\n<command> list_tables - показать список всех таблиц\n<command> drop_table <имя_таблицы> - удалить таблицу\n<command> exit - выход из программы\n<command> help - справочная информация')
-    filepath = 'src/primitive_db/db_meta.json'
+   
     while True:
         try:
-            metadata = load_metadata(filepath)
+            metadata = load_metadata()
             commands = prompt.string('\nВведите команду:')
             args = shlex.split(commands)
             # Первое слово команда, далее аргументы
@@ -29,12 +30,12 @@ def run():
             match command:
                 case 'create_table':
                         data = create_table(metadata, table_name, columns)
-                        save_metadata(filepath, data)
+                        save_metadata(data)
                 case 'list_tables':
                     list_tables(metadata)
                 case 'drop_table':
                     data = drop_table(metadata, table_name)
-                    save_metadata(filepath, data)
+                    save_metadata(data)
                 case 'exit':
                     print('\nВыход из программы')
                     break

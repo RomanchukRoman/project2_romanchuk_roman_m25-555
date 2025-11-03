@@ -1,7 +1,8 @@
 # src/primitive_db/utils.py
 import json
+from .constants import METADATA_FILE, get_table_data_path
 
-def load_metadata(filepath):
+def load_metadata(filepath = METADATA_FILE):
     '''
     Загружает данные из JSON-файла. Если файл не найден, возвращает пустой словарь {}. 
     Используйте try...except FileNotFoundError.
@@ -13,7 +14,7 @@ def load_metadata(filepath):
     except (FileNotFoundError):
         return {}
 
-def save_metadata(filepath, data):
+def save_metadata(data, filepath = METADATA_FILE):
     '''
     Сохраняет переданные данные в JSON-файл.
     '''
