@@ -1,0 +1,22 @@
+{
+    "records": [
+        {
+            "id": 2,
+            "name": "Ivan",
+            "age": 28,
+            "is_active": true
+        },
+        {
+            "id": 3,
+            "name": "Elena",
+            "age": 20,
+            "is_active": false
+        },
+        {
+            "id": 4,
+            "name": "Sergei",
+            "age": 28,
+            "is_active": true
+        }
+    ]
+}

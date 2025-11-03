@@ -6,8 +6,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-# make database
-# create_table users name:str age:int is_active:bool
-# drop_table users
