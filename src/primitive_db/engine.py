@@ -1,11 +1,18 @@
 # src/primitive_db/engine.py
 import prompt
 import shlex
-from .utils import load_metadata, save_metadata
+
 from .core import (
-    create_table, drop_table, list_tables, 
-    insert, select, update, delete, info_table 
+    create_table,
+    delete,
+    drop_table,
+    info_table,
+    insert,
+    list_tables,
+    select,
+    update,
 )
+from .utils import load_metadata, save_metadata
 
 def print_help():
     """Печатает справку по помощи."""

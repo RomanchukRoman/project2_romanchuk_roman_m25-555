@@ -1,7 +1,8 @@
 # src/primitive_db/core.py
 from prettytable import PrettyTable
-from .utils import load_table_data, save_table_data
+
 from .parser import parse_values, parse_where_clause, parse_set_clause
+from .utils import load_table_data, save_table_data
 
 def create_table(metadata, table_name, columns):
     '''

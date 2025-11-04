@@ -1,5 +1,6 @@
 # src/primitive_db/utils.py
 import json
+
 from .constants import METADATA_FILE, get_table_data_path
 
 def load_metadata(filepath = METADATA_FILE):
