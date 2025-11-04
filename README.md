@@ -53,7 +53,7 @@ exit    # Выход из программы
 
 ## Демонстрация работы
 
-[![asciicast](https://asciinema.org/a/Kms4q1SES5FitAUD5O9pZMeA9](https://asciinema.org/a/Kms4q1SES5FitAUD5O9pZMeA9)
+<iframe src="https://asciinema.org/a/Kms4q1SES5FitAUD5O9pZMeA9/embed" id="asciicast-Kms4q1SES5FitAUD5O9pZMeA9" width="100%" height="350" frameborder="0" allowfullscreen></iframe>
 
 ## Структура проекта
 
