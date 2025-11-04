@@ -1,15 +1,11 @@
 # src/primitive_db/core.py
 from prettytable import PrettyTable
 from .utils import load_table_data, save_table_data
-from .parser import parse_value, parse_values, parse_where_clause, parse_set_clause
+from .parser import parse_values, parse_where_clause, parse_set_clause
 
 def create_table(metadata, table_name, columns):
     '''
-    Функция должна принимать текущие метаданные, имя таблицы и список столбцов.
-    Автоматически добавлять столбец ID:int в начало списка столбцов.
-    Проверять, не существует ли уже таблица с таким именем. Если да, выводить ошибку.
-    Проверять корректность типов данных (только int, str, bool).
-    В случае успеха, обновлять словарь metadata и возвращать его.
+    Функция создания таблицы.
     '''
     # Проверки на наличие такой таблицы и типы данных
     if table_name in metadata:
@@ -40,8 +36,7 @@ def create_table(metadata, table_name, columns):
 
 def drop_table(metadata, table_name):
     '''
-    Проверяет существование таблицы. Если таблицы нет, выводит ошибку.
-    Удаляет информацию о таблице из metadata и возвращает обновленный словарь.
+    Функция удаляющая таблицу, если она существует. 
     '''
     # Проверки на наличие такой таблицы
     if table_name not in metadata:

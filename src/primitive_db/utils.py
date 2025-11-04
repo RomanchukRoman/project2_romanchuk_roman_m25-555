@@ -5,7 +5,6 @@ from .constants import METADATA_FILE, get_table_data_path
 def load_metadata(filepath = METADATA_FILE):
     '''
     Загружает данные из JSON-файла. Если файл не найден, возвращает пустой словарь {}. 
-    Используйте try...except FileNotFoundError.
     '''
     try:
         with open(filepath, "r", encoding="utf-8") as file:

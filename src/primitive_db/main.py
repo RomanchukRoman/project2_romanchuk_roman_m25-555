@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from .engine import run, print_help
+from .engine import run
 
 def main():
     run()
